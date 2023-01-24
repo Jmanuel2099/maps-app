@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import TheWelcome from "../components/TheWelcome.vue";
+import { usePlaces } from '../composables/usePlaces';
+import MapView from '../components/mapView/MapView.vue';
+
+const { } = usePlaces();
+
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <MapView />
 </template>
