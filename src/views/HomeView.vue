@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { usePlaces } from '../composables/usePlaces';
-import MapView from '../components/mapView/MapView.vue';
+import MapView from '../components/MapView.vue';
+import CurrentLocationBtn from '@/components/currentLocationBtn.vue';
 
 const { } = usePlaces();
 
@@ -8,4 +9,5 @@ const { } = usePlaces();
 
 <template>
   <MapView />
+  <CurrentLocationBtn/>
 </template>

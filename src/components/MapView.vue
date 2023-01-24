@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
-import { usePlaces } from '../../composables/usePlaces';
+import { usePlaces, useMap } from '../composables';
 import mapboxgl from 'mapbox-gl';
 
 const { userLocation, isUserLocationReady } = usePlaces();
+const { setMap } = useMap();
 
 const mapElement = ref<HTMLDivElement>();
 
@@ -26,11 +27,26 @@ const initMap = async () => {
         center: userLocation.value, // starting position [lng, lat]
         zoom: 15, // starting zoom
     });
+
+    const locationPopup = new mapboxgl.Popup()
+        .setLngLat(userLocation.value)
+        .setHTML(`
+    <h4>Here</h4>
+    <p>${userLocation.value}</p>
+    `)
+
+    const locationMarker = new mapboxgl.Marker()
+        .setLngLat(userLocation.value)
+        .setPopup(locationPopup)
+        .addTo(map);
+    
+    setMap(map);
 };
 
 watch(isUserLocationReady, (newVal) => {
     if (isUserLocationReady.value) initMap();
 });
+
 </script>
 
 <template>

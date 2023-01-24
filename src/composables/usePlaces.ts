@@ -12,7 +12,7 @@ export const usePlaces = () => {
         if (!placesStore.isUserLocationReady) {
             placesStore.initUserLocation();
         }
-    })
+    });
 
     return {
         // State
@@ -22,5 +22,5 @@ export const usePlaces = () => {
         isUserLocationReady
 
         //Actions
-    }
-}
+    };
+};
