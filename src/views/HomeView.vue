@@ -2,6 +2,8 @@
 import { usePlaces } from '../composables/usePlaces';
 import MapView from '../components/MapView.vue';
 import CurrentLocationBtn from '@/components/currentLocationBtn.vue';
+import SearchBar from '@/components/SearchBar.vue';
+import TripDetails from '@/components/TripDetails.vue';
 
 const { } = usePlaces();
 
@@ -9,5 +11,7 @@ const { } = usePlaces();
 
 <template>
   <MapView />
-  <CurrentLocationBtn/>
+  <SearchBar />
+  <CurrentLocationBtn />
+  <TripDetails />
 </template>

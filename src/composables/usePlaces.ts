@@ -6,7 +6,7 @@ import { usePlacesStore } from '../stores/places'
 export const usePlaces = () => {
 
     const placesStore = usePlacesStore();
-    const { userLocation, isUserLocationReady } = storeToRefs(placesStore);
+    const { userLocation, isUserLocationReady,places, isLoadingPlaces } = storeToRefs(placesStore);
 
     onMounted(() => {
         if (!placesStore.isUserLocationReady) {
@@ -14,13 +14,18 @@ export const usePlaces = () => {
         }
     });
 
+    const searchPlacesByTerm = async (query='') => {
+        
+        placesStore.searchPlacesByTerm(query);
+    };
     return {
         // State
         userLocation,
-
+        places,
+        isLoadingPlaces,
         //Getters
-        isUserLocationReady
-
+        isUserLocationReady,
         //Actions
+        searchPlacesByTerm
     };
 };

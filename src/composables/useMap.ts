@@ -1,4 +1,5 @@
-import { useMapStore } from "@/stores/map";
+import type { Feature } from "@/interfaces/places";
+import { useMapStore, type LngLatn } from "@/stores/map";
 import type mapboxgl from "mapbox-gl";
 import { storeToRefs } from "pinia";
 
@@ -8,6 +9,14 @@ export const useMap = () => {
 
     const setMap = (map: mapboxgl.Map) => {
         mapStore.setMap(map);
+    };
+
+    const setPalceMarkers = (places: Feature[]) => {
+        mapStore.setPlaceMarkers(places);
+    };
+
+    const getRouteBetweenTowPoints = (start: LngLatn, end: LngLatn) => {
+        mapStore.getRouteBetweenTowPoints({start, end})
     };
 
     return {
@@ -20,5 +29,7 @@ export const useMap = () => {
         isMapReady,
         //actions
         setMap,
+        setPalceMarkers,
+        getRouteBetweenTowPoints,
     };
 };
